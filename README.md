@@ -3,6 +3,52 @@
 Example code for the book **Fluent Python, Second Edition** by Luciano Ramalho (O'Reilly, 2022).
 
 
+## Running the code with [uv](https://docs.astral.sh/uv/)
+
+This repository ships with a `pyproject.toml` and `uv.lock` so a single shared environment covers the example code across chapters. Python 3.12 is pinned via `.python-version`.
+
+### One-time setup
+
+```sh
+uv sync
+```
+
+That installs the runtime deps (`click`, `fastapi`, `geolib`, `httpx`, `tqdm`, `uvicorn`) plus the dev tools (`pytest`, `mypy`, `ruff`) into `.venv/`.
+
+### Running scripts
+
+Use `uv run` — no need to activate the venv:
+
+```sh
+uv run python 19-concurrency/spinner_thread.py
+uv run python 20-executors/demo_executor_map.py
+```
+
+### Running doctests
+
+`pytest.ini` is configured with `--doctest-modules`, so most chapter files double as doctests:
+
+```sh
+uv run pytest 11-pythonic-obj/vector2d_v0.py
+uv run pytest 17-it-generator/sentence.py
+```
+
+### Type-checking and linting
+
+```sh
+uv run mypy 11-pythonic-obj/vector2d_v0.py
+uv run ruff check 11-pythonic-obj/
+```
+
+### Caveats
+
+- **`curio`** (used only in [21-async/domains/curio](21-async/domains/curio)) is *not* in the shared env — its latest release is broken on Python 3.12. To run that example, create a separate environment with Python ≤3.11:
+  ```sh
+  cd 21-async/domains/curio && uv venv --python 3.11 && uv pip install curio
+  ```
+- A few chapters have their own `requirements.txt` from the upstream book repo. They overlap with the root environment and can generally be ignored.
+
+
 ## Table of Contents
 
 All chapters are undergoing review and updates, including significant rewrites in the chapters about concurrency in **Part V**.
