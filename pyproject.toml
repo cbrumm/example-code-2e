@@ -1,0 +1,20 @@
+[project]
+name = "fluent-python-2e"
+version = "0.1.0"
+description = "Example code for Fluent Python, 2nd Edition"
+requires-python = ">=3.12"
+dependencies = [
+    "click>=8.3.3",
+    "fastapi>=0.136.1",
+    "geolib>=1.0.7",
+    "httpx>=0.28.1",
+    "tqdm>=4.67.3",
+    "uvicorn>=0.46.0",
+]
+
+[dependency-groups]
+dev = [
+    "mypy>=1.20.2",
+    "pytest>=9.0.3",
+    "ruff>=0.15.12",
+]
