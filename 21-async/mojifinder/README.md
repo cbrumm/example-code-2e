@@ -5,20 +5,40 @@ Examples from _Fluent Python, Second Edition_—Chapter 22, _Asynchronous Progra
 ## How to run `web_mojifinder.py`
 
 `web_mojifinder.py` is a Web application built with _[FastAPI](https://fastapi.tiangolo.com/)_.
-To run it, first install _FastAPI_ and an ASGI server.
-The application was tested with _[Uvicorn](https://www.uvicorn.org/)_.
+It was tested with the _[Uvicorn](https://www.uvicorn.org/)_ ASGI server.
+
+Both `fastapi` and `uvicorn` are declared in the project's `pyproject.toml` at the
+repo root, so [uv](https://docs.astral.sh/uv/) will install them automatically.
+
+From this directory:
 
 ```
-$ pip install fastapi uvicorn
+$ uv run uvicorn web_mojifinder:app
 ```
 
-Now you can use `uvicorn` to run the app.
+Or from the repo root:
 
 ```
-$ uvicorn web_mojifinder:app
+$ uv run --directory 21-async/mojifinder uvicorn web_mojifinder:app
 ```
 
 Finally, visit http://127.0.0.1:8000/ with your browser to see the search form.
+
+## How to run `web_mojifinder_bottle.py`
+
+This variant uses the bundled `bottle.py` (no extra install needed) and runs as a script:
+
+```
+$ uv run python web_mojifinder_bottle.py
+```
+
+## How to run `tcp_mojifinder.py`
+
+Standard library only — run it directly:
+
+```
+$ uv run python tcp_mojifinder.py
+```
 
 
 ## Directory contents
